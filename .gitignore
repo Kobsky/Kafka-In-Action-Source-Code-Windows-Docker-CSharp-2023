@@ -156,3 +156,5 @@ buildNumber.properties
 
 **/.vs/
 **/Debug/
+**/obj/
+**/bin/
