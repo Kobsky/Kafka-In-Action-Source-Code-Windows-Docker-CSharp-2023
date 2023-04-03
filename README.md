@@ -1,5 +1,30 @@
 # Source Code for Kafka in Action
 
+## From Alexander Kobelev (how to for windows)
+* Using this source code on a Windows machine with Docker can confuse by brokers unavailable, follow the next recommendations to save your time and don't solve those problems.
+
+### Why the brokers unavailable
+The cause of unavailable brokers is a place where you run Kafka tools.
+In docker-compose.yaml each broker has PLAINTEXT_HOST://localhost:909X settings, these settings will say to your tool where the broker is. 
+And your tool will get the three addresses:
+	PLAINTEXT_HOST://localhost:9092, 
+	PLAINTEXT_HOST://localhost:9093, 
+	PLAINTEXT_HOST://localhost:9094
+	
+Let's imagine that you attached to the broker1 container and run one of a tool, for example: 
+	kafka-topics --bootstrap-server localhost:9092 --describe --topic kinaction_helloworld
+In this case, the first address PLAINTEXT_HOST://localhost:9092 will be correct, but the next two nope (localhost:9093, localhost:9094), because these are different containers that are not localhost for broker1
+
+Any of these address will be correct only on the Docker Host machine, but it's a Windows OS.
+To solve that situatin you need to setup Kafka console tools on your Windows.
+
+### Setup Kafka console tools on Windows Docker host machine
+1. Download kafka from https://kafka.apache.org/downloads (for example kafka_2.13-3.4.0.tgz)
+2. Extract kafka_2.13-3.4.0.tgz to some folder (for example D:\kafka_2.13-3.4.0)
+3. Setup the local enviroment varible KAFKA_HOME (KAFKA_HOME=D:\kafka_2.13-3.4.0)
+4. Open CMD and follow to win kafka dir (CD D:\kafka_2.13-3.4.0\bin\windows)
+5. Thats all, now you can some command (kafka-topics -help)
+
 ## Most up-to-date location
 * While the source code might be included as a zip file from the Manning website, the location that will likely be the most up-to-date will be located at https://github.com/Kafka-In-Action-Book/Kafka-In-Action-Source-Code. The authors recommend referring to that site rather than the Manning zip location if you have a choice.
 
