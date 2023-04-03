@@ -151,3 +151,8 @@ buildNumber.properties
 .settings
 .classpath
 .vscode
+
+# CSharp
+
+**/.vs/
+**/Debug/
