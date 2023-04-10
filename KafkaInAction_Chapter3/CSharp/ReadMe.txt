@@ -19,3 +19,11 @@ kafka-topics --bootstrap-server localhost:9092 --describe --topic kinaction_aler
 
 7. Run:
 kafka-console-consumer --bootstrap-server localhost:9092 --topic kinaction_alert_connect --from-beginning
+
+
+#Sink alerts from Kafka to file
+1. Run:
+connect-standalone D:\kafka_2.13-3.4.0\config\connect-standalone.properties D:\Code\Kafka-In-Action-Source-Code-Windows-Docker-CSharp-2023\KafkaInAction_Chapter3\CSharp\alert-source.properties D:\Code\Kafka-In-Action-Source-Code-Windows-Docker-CSharp-2023\KafkaInAction_Chapter3\CSharp\alert-sink.properties
+
+2. In folder D:\Code\Kafka-In-Action-Source-Code-Windows-Docker-CSharp-2023\KafkaInAction_Chapter3\CSharp\ 
+	Should appear new file alert-sink.txt, with full messages from the topic within
